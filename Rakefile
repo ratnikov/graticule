@@ -5,10 +5,11 @@ rescue LoadError
   exit 1
 end
 require 'rubygems'
-require 'activesupport'
+require 'active_support'
 require 'rake/testtask'
 require 'rake/rdoctask'
 require 'rcov/rcovtask'
+require 'yaml'
 
 Jeweler::Tasks.new do |s|
   s.name              = "graticule"
@@ -23,7 +24,7 @@ Jeweler::Tasks.new do |s|
   s.has_rdoc          = true
   s.extra_rdoc_files  = ["README.txt"]
   s.rdoc_options      = ["--main", "README.rdoc", "--inline-source", "--line-numbers"]
-  s.test_files        = Dir['test/**/*']
+  s.test_files        = Dir['test/**/*'] - [ 'test/config.yml' ]
 end
 
 desc 'Default: run unit tests.'
@@ -94,7 +95,7 @@ end
 def test_config
   file = File.dirname(__FILE__) + '/test/config.yml'
   raise "Copy config.yml.default to config.yml and set the API keys" unless File.exists?(file)
-  @test_config ||= returning(YAML.load(File.read(file))) do |config|
+  @test_config ||= YAML.load(File.read(file)).tap do |config|
     config.each do |service,values|
       values['responses'].each {|file,url| update_placeholders!(values, url) }
     end

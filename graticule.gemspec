@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = ["Brandon Keepers"]
-  s.date = %q{2010-02-04}
+  s.date = %q{2010-09-10}
   s.default_executable = %q{geocode}
   s.description = %q{Graticule is a geocoding API that provides a common interface to all the popular services, including Google, Yahoo, Geocoder.us, and MetaCarta.}
   s.email = %q{brandon@opensoul.org}
@@ -109,11 +109,10 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--main", "README.rdoc", "--inline-source", "--line-numbers"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{graticule}
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.7}
   s.summary = %q{API for using all the popular geocoding services.}
   s.test_files = [
-    "test/config.yml",
-     "test/config.yml.default",
+    "test/config.yml.default",
      "test/fixtures",
      "test/fixtures/responses",
      "test/fixtures/responses/freethepostcode",
@@ -184,7 +183,7 @@ Gem::Specification.new do |s|
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
-    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<activesupport>, [">= 0"])
       s.add_runtime_dependency(%q<happymapper>, [">= 0.3.0"])
     else
